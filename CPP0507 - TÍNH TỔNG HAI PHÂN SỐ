@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+#define ll long long
+// dung struct
+using namespace std;
+
+struct PhanSo{
+	long long tu,mau;
+};
+void nhap(PhanSo &p){
+	cin>>p.tu>>p.mau;
+}
+ll gcd(ll A, ll B){
+	if(B == 0) return A;
+	return gcd(B, A%B);
+}
+ll lcm(ll A, ll B) {
+    return A*B/gcd(A,B);
+}
+void rutgon(PhanSo &p){
+	ll ucln = gcd(p.tu, p.mau);
+	p.tu /= ucln;
+	p.mau /= ucln;
+}
+PhanSo tong(PhanSo A, PhanSo B){
+	ll mc = lcm(A.mau, B.mau);
+	A.tu = mc / A.mau * A.tu;
+	B.tu = mc / B.mau * B.tu;
+	A.tu += B.tu;
+	A.mau = mc;
+	rutgon(A);
+	return A;
+}
+void in(PhanSo p){
+	cout<<p.tu<<"/"<<p.mau;
+}
+int main() {
+	struct PhanSo p,q;
+	nhap(p); nhap(q);
+	PhanSo t = tong(p,q);
+	in(t);
+	return 0;
+}
+
