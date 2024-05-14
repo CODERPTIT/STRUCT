@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Time {
+	int hours, minutes, seconds;
+};
+void nhap(Time *T, int N){
+	for(int i = 0; i < N; i++){
+		cin >> T[i].hours >> T[i].minutes >> T[i].seconds;
+	}
+}
+bool compare(Time a, Time b) {
+	if(a.hours != b.hours) return a.hours < b.hours;
+	if(a.minutes != b.minutes) return a.minutes < b.minutes;
+	return a.seconds < b.seconds;
+}
+void sap_xep(Time *T, int N){
+	sort(T, T+N, compare);
+}
+void in(Time *T, int N){
+	for(int i = 0; i < N; i++) cout <<T[i].hours<<" "<<T[i].minutes<<" "<<T[i].seconds<<endl;
+}
+
+int main(){
+	struct Time T[5000];
+	int N; cin >> N;
+	nhap(T, N);
+	sap_xep(T, N);
+	in(T, N);
+} 
+
