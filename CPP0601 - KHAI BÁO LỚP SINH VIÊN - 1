@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+// dung struct
+using namespace std;
+
+struct SinhVien{
+	string hovaten;
+	string msv;
+	string lop;
+	string date;
+	float diem;
+	
+	void nhap()
+	{
+		msv = "B20DCCN001";
+		getline(cin, hovaten);
+		getline(cin, lop);
+		getline(cin, date);
+		cin>>diem;
+
+    	if (date[1] == '/') date = "0" + date;
+    	if (date[4] == '/') date.insert(3, "0");
+	}
+	
+	void xuat()
+	{
+		cout<<msv<<" "<<hovaten<<" "<<lop<<" "<<date<<" "<<fixed<<setprecision(2)<<diem<<endl;
+	}
+};
+int main(){
+    SinhVien a;
+    a.nhap();
+    a.xuat();
+    return 0;
+}
