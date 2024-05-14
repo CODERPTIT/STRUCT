@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+// dung struct
+using namespace std;
+
+struct PhanSo{
+	long long tuso,mauso;
+};
+void nhap(PhanSo &A){
+	cin>>A.tuso>>A.mauso;
+}
+long long GCD(long long a, long long b){
+	if(b == 0) return a;
+	return GCD(b, a%b);
+}
+void rutgon(PhanSo &A){
+	long long ucln = GCD(A.tuso, A.mauso);
+	A.tuso = A.tuso/ucln;
+	A.mauso = A.mauso/ucln;
+}
+void in(PhanSo A){
+	cout << A.tuso << "/" << A.mauso;
+}
+int main() {
+	struct PhanSo p;
+	nhap(p);
+	rutgon(p);
+	in(p);
+	return 0;
+}
+
