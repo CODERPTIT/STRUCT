@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+// dung struct
+using namespace std;
+
+struct NhanVien{
+	string mnv;
+	string hovaten;
+	string sex;
+	string birth;
+	string address;
+	string tax;
+	string date;
+};
+void nhap(NhanVien &A){
+	A.mnv = "00001";
+	getline(cin, A.hovaten);
+	cin>>A.sex;
+	cin.ignore();
+	getline(cin, A.birth);
+	getline(cin, A.address);
+	cin>>A.tax;
+	cin>>A.date;
+}
+void in(NhanVien A){
+	cout<<A.mnv<<" "<<A.hovaten<<" "<<A.sex<<" "<<A.birth<<" "<<A.address<<" "<<A.tax<<" "<<A.date;
+}
+int main(){
+    struct NhanVien a;
+    nhap(a);
+    in(a);
+    return 0;
+}
