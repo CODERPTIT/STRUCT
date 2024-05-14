@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+struct SinhVien {
+    string ten, bir_date, nam, thang, ngay;
+};
+
+void nhap(SinhVien &ds) {
+    cin >> ds.ten >> ds.bir_date;
+    
+	for(int j = 6; j <= 9; j++) ds.nam += ds.bir_date[j];
+	ds.ngay += ds.bir_date[0];
+	ds.ngay += ds.bir_date[1];
+	ds.thang += ds.bir_date[3];
+	ds.thang += ds.bir_date[4];
+
+}
+bool compare(SinhVien a, SinhVien b){
+	if(a.nam != b.nam) return a.nam > b.nam;
+	if(a.thang != b.thang) return a.thang > b.thang;
+	return a.ngay > b.ngay;
+	
+}
+void sap_xep(SinhVien *ds, int N){
+	sort(ds, ds+N, compare);
+}
+void in_ds(SinhVien *ds, int N){
+	cout << ds[0].ten << endl;
+	cout << ds[N-1].ten <<endl;
+}
+
+int main(){
+    int N;
+    cin >> N;
+    struct SinhVien *ds = new SinhVien[N];
+    for(int i = 0; i < N; i++) {
+    	nhap(ds[i]);
+	}
+	sap_xep(ds, N);
+	in_ds(ds, N);
+    
+    delete []ds;
+    return 0;
+}
+
