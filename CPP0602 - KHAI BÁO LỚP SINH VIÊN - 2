@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+// dung struct
+using namespace std;
+
+class SinhVien{
+	private:
+		string msv, hvt, lop, ns;
+		double gpa;
+	public:
+		friend istream &operator >> (istream &in, SinhVien &a);
+		friend ostream &operator << (ostream &out, SinhVien a); 		
+};
+istream &operator >> (istream &in, SinhVien &a){
+	a.msv = "B20DCCN001";
+//	cout<<"nhap ho va ten: "; 
+	getline(in, a.hvt);
+//	cout<<"nhap ten lop: "; 
+	in>>a.lop;
+//	cout<<"nhap nam sinh: "; 
+	in>>a.ns;
+//	cout<<"nhap GPA: "; 
+	in>>a.gpa;
+	return in;
+}
+ostream &operator << (ostream &out, SinhVien a){
+	if(a.ns[1] == '/') a.ns = "0" + a.ns;
+	if(a.ns[4] == '/') a.ns.insert(3, "0");
+	cout<<a.msv<<" "<<a.hvt<<" "<<a.lop<<" "<<a.ns<<" "<<fixed<<setprecision(2)<<a.gpa;
+	return out;
+}
+int main(){
+    SinhVien a;
+    cin >> a;
+    cout << a;
+    return 0;
+}
