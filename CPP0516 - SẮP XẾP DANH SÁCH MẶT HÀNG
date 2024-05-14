@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+struct Products {
+    string name_1, typename_2;
+    double cost_1, cost_2, revenue;
+    int pos;
+};
+
+void nhap(Products *sp, int N) {
+    for (int i = 0; i < N; i++) {
+    	cin.ignore();
+    	getline(cin, sp[i].name_1);
+    	getline(cin, sp[i].typename_2);
+    	cin >> sp[i].cost_1;
+    	cin >> sp[i].cost_2;
+    	sp[i].revenue = sp[i].cost_2 - sp[i].cost_1;
+    	sp[i].pos = i + 1;
+    }
+}
+void sapxep(Products *sp, int N){
+	for(int i = 0; i < N-1; i++){
+		for(int j = i; j < N; j++){
+			if(sp[i].revenue < sp[j].revenue ){
+				swap(sp[i].pos, sp[j].pos);
+				swap(sp[i].revenue, sp[j].revenue);
+				swap(sp[i].name_1, sp[j].name_1);
+				swap(sp[i].typename_2, sp[j].typename_2);	
+			}
+		}
+	}	
+}
+
+void in(Products *sp, int N) {
+    for (int i = 0; i < N; i++) {
+    	cout << sp[i].pos << " " << sp[i].name_1 << " " << sp[i].typename_2 << " ";
+		cout << fixed <<setprecision(2) << sp[i].revenue << endl;
+    }
+}
+
+int main() {
+    int N;
+    cin >> N;
+    
+    struct Products sp[N];
+    nhap(sp, N);
+    sapxep(sp, N);
+    in(sp, N);
+    return 0;
+}
+
