@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#define PI 3.141592653589793238
+#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+using namespace std;
+
+struct Point {
+    double x, y;
+};
+
+double distance(Point p1, Point p2) {
+    double dx = p1.x - p2.x;
+    double dy = p1.y - p2.y;
+    return sqrt(dx * dx + dy * dy);
+}
+
+void nhap(Point& p0, Point& p1, Point& p2) {
+    cin >> p0.x >> p0.y >> p1.x >> p1.y >> p2.x >> p2.y;
+}
+
+bool isValid(Point p0, Point p1, Point p2) {
+    double d1 = distance(p0, p1);
+    double d2 = distance(p1, p2);
+    double d3 = distance(p2, p0);
+    return (d1 + d2 > d3) && (d1 + d3 > d2) && (d2 + d3 > d1);
+}
+
+double calculateArea(Point p0, Point p1, Point p2) {
+    double d1 = distance(p0, p1);
+    double d2 = distance(p1, p2);
+    double d3 = distance(p2, p0);
+    double s = (d1 + d2 + d3) / 2;
+    return sqrt(s * (s - d1) * (s - d2) * (s - d3));
+}
+
+double circumcircleRadius(Point p0, Point p1, Point p2) {
+    double d1 = distance(p0, p1);
+    double d2 = distance(p1, p2);
+    double d3 = distance(p2, p0);
+    double area = calculateArea(p0, p1, p2);
+    return (d1 * d2 * d3) / (4 * area);
+}
+void in(Point p0, Point p1, Point p2){
+	if (!isValid(p0, p1, p2)) {
+        cout << "INVALID\n";
+    } else {
+        double radius = circumcircleRadius(p0, p1, p2);
+        cout << fixed << setprecision(3) << PI * radius * radius << endl;
+    }
+}
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while (t--) {
+        Point p0, p1, p2;
+        nhap(p0, p1, p2);
+        in(p0, p1, p2);
+    }
+    return 0;
+}
